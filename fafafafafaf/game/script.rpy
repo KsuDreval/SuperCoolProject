@@ -1,8 +1,8 @@
 screen info:
     frame:
         padding(10,10)
-        xalign 0.95
-        yalign 0.05
+        xalign 0.97
+        yalign 0.03
 
         textbutton "СПРАВОЧНИК" action Show ("rar") xalign 0.5
 
@@ -41,11 +41,21 @@ screen caesar:
 
 define e = Character("Ао")
 
+
 label start:
 
     scene classroom
 
-    show hello
+    menu:
+        "Выбери главу"
+        "Начало":
+            show hello
+        "Шифр Цезаря":
+            jump caesar
+        "Шифр одноалфавитной замены":
+            jump change
+        "Шифр Виженера":
+            jump visener
 
 
     e "Приветствую тебя в нашей Школе Криптографии! "
@@ -239,6 +249,7 @@ label start:
     return
 
 label caesar:
+    show screen info
     show happy
     e "Раз вопросов нет, то начнем наше обучение!"
     hide happy
@@ -269,6 +280,7 @@ label caesar:
     e "Удачи тебе! Не забудь заглянуть в справочник перед выполнением задания."
     hide ugol
     scene caesar_level1
+    "Уровень 1"
 
     $ answer = renpy.input("Введи свой ответ")
 
@@ -281,4 +293,97 @@ label caesar:
     e "Ура! Ты справился"
     hide happy
     show normal
-    e "Перейдем к следующему уровню"
+    e "Перейдем к следующему заданию"
+    hide normal
+    scene caesar_level12
+
+    $ answer = renpy.input("Введи свой ответ")
+
+    if answer != "Вообще-то Цезарь - это салат":
+        while answer == "Вообще-то Цезарь - это салат":
+            $ answer = renpy.input("Попробуй еще раз")
+    scene classroom
+    show happy
+    e "Вау, у тебя хорошо получается!"
+    hide happy
+    show normal
+    e "Но сейчас задание усложнится"
+    hide normal
+    show clever
+    e "В предыдущем уровне ты работал со смещением на 1 букву"
+    e "Но сейчас эта цифра увеличится"
+    hide clever
+    show normal
+    e "Не беспокойся, это по прежнему не очень сложно"
+    e "Давай начнем"
+    hide normal
+    scene caesar_level2
+    "Уровень 2"
+    $ answer = renpy.input("Введи свой ответ")
+
+    if answer != "Чхочфр оуицкйокушфз чхкьоёсвуф йсе зёч":
+        while answer == "Чхочфр оуицкйокушфз чхкьоёсвуф йсе зёч":
+            $ answer = renpy.input("Попробуй еще раз")
+    scene classroom
+    show happy
+    e "С каждым разом все лучше!"
+    hide happy
+    show normal
+    e "Хочешь узнать, что нужно для приготовления cалата?"
+    e "Для этого придется выполнить еще два задания"
+    hide normal
+    scene caesar_level22
+    $ answer = renpy.input("Введи свой ответ")
+
+    if answer != "Зеленый салат, куриное филе, чеснок, помидоры":
+        while answer == "Зеленый салат, куриное филе, чеснок, помидоры":
+            $ answer = renpy.input("Попробуй еще раз")
+    scene classroom
+    show happy
+    e "Иы добыли целую половину ингридиентов!"
+    hide happy
+    show normal
+    e "Теперь осталось только одно задание"
+    e "Оно будет чуточку сложнее, но я в тебя верю!"
+    hide normal
+    show clever
+    e "Здесь ты должен будешь сам подобрать сдвиг, чтобы расшифровать фразу"
+    e "Он будет совсем небольшим, так что много думать не надо"
+    e "Не забывай, что можно идти и назад по алфавиту"
+    hide clever
+    show normal
+    e "Соберись с мыслями, ведь мы начинаем"
+    hide normal
+    scene caesar_level3
+    "Уровень 3"
+    $ answer = renpy.input("Введи свой ответ")
+
+    if answer != "Сухарики, соус Цезарь, сливочное масло, сыр пармезан":
+        while answer == "Сухарики, соус Цезарь, сливочное масло, сыр пармезан":
+            $ answer = renpy.input("Попробуй еще раз")
+    scene classroom
+    show happy
+    e "Здорово, ты смог выполнить все задания из этого модуля!"
+    hide happy
+    show clever
+    e "Не забудь приготовить и съесть салат"
+    hide clever
+    show normal
+    e "На этом глава «Шифр Цезаря» заканчивается"
+    e "Дальше тебе ождает шифр одноалфавитной замены"
+    e "В той главе мы расскажем тебе про частотный анализ"
+    e "Готов идти дальше?"
+    menu:
+        "Да!":
+            show happy
+            e "Здорово! На встречу новым знаниям"
+            hide happy
+            jump change
+        "Нет":
+            show happy
+            e "Мне все равно, ты продолжишь учиться дальше"
+            hide happy
+            jump change
+
+    label change:
+        "наае"
