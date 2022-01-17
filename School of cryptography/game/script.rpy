@@ -37,7 +37,28 @@ screen caesar:
             text "Кжзфя жсойзр дюхя хзнфх"
 
             textbutton "НАЗАД" action Hide ("caesar") xalign 0.9
+screen zamena:
+    frame:
+        padding(10,10)
+        xalign 0.5
+        yalign 0.5
+        vbox:
+            textbutton "Шифр одноалфавитной замены" action Show ("zamena1")
+            textbutton "Частотный анализ" action Show ("zamena2")
+            textbutton "НАЗАД" action Hide ("zamena") xalign 0.9
 
+screen zamena1:
+    frame:
+        padding(10,10)
+        xalign 0.5
+        yalign 0.5
+        vbox:
+            text "Одноалфавитный шифр подстановки (или шифр простой замены) - это шифр, при котором каждый символ заменяется произвольно."
+            text "Принцип этого шифра - замена букв алфавита на любую другую (не обязательно того же алфавита). Буквы также могут заменяться на цифры или даже символы."
+            text "Но этот метод лучше применять при шифровке длинных сообщений, так как короткие содержат недостаточное количество слов для расшифровки."
+            text "Такой шифр очень легко расшифровать с помощью частотного анализа."
+            textbutton "Частотный анализ" action Show ("zamena2") xalign 0.9
+            textbutton "НАЗАД" action Hide ("zamena1") xalign 0.9
 
 define e = Character("Ао")
 
@@ -384,6 +405,7 @@ label caesar:
 
 
 label change:
+    show screen info
     screen zamena:
         frame:
             padding(10,10)
@@ -413,6 +435,7 @@ label change:
     show ugol:
          xalign 0.001
          yalign 0.1
+    show kotik
     e "Вот, держи милую картинку с котиком."
     hide ugol
     scene classroom
@@ -442,6 +465,7 @@ label change:
     show clever
     e "Я недавно нашел свои старые записи, но там везде все зашифровано."
     e "Так же у меня получилось найти ключи для этих записей, но я никак не могу сесть за дело, много работы."
+    hide clever
     show happy
     e "Разберись, пожалйста за меня, хорошо?"
     hide happy
